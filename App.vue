@@ -1,5 +1,7 @@
 <script>
+import ButtonMain from './components/ButtonMain.vue'
 import FooterLogo from './components/FooterLogo.vue'
+import FooterNetwork from './components/FooterNetwork.vue'
 
 import logo from '@/assets/images/logo.svg?url'
 import iconClose from '@/assets/images/icon-close.svg?url'
@@ -11,11 +13,10 @@ import iconBudgeting from '@/assets/images/icon-budgeting.svg?url'
 import iconOnboarding from '@/assets/images/icon-onboarding.svg?url'
 import iconApi from '@/assets/images/icon-api.svg?url'
 
-import imgConfetti from '@/assets/images/image-confetti.jpg'
-import imgCurrency from '@/assets/images/image-currency.jpg'
-import imgPlane from '@/assets/images/image-plane.jpg'
+// import imgCurrency from '@/assets/images/image-currency.jpg'
 import imgRestaurant from '@/assets/images/image-restaurant.jpg'
-import ButtonMain from './components/ButtonMain.vue'
+import imgPlane from '@/assets/images/image-plane.jpg'
+import imgConfetti from '@/assets/images/image-confetti.jpg'
 
 export default {
   data() {
@@ -25,7 +26,7 @@ export default {
       iconHamburger,
       isNavOpen: false,
       bgMB: 'bg-[url(@/assets/images/bg-intro-mobile.svg?url)]',
-      bgDT: 'bg-[url(@/assets/images/bg-intro-desktop.svg?url)]',
+      bgDT: 'DT:bg-[url(@/assets/images/bg-intro-desktop.svg?url)]',
       imgHeader,
       dataOne: [
         {
@@ -51,50 +52,63 @@ export default {
       ],
       dataTwo: [
         {
-          image: imgCurrency,
+          image: 'bg-[url(@/assets/images/image-currency.jpg)]',
           autor: 'Claire Robinson',
           header: 'Receive money in any currency with no fees',
           main: 'The world is getting smaller and we’re becoming more mobile. So why should you be forced to only receive money in a single …',
         },
         {
-          image: imgRestaurant,
+          image: 'bg-[url(@/assets/images/image-restaurant.jpg)]',
           autor: 'Wilson Hutton',
           header: 'Treat yourself without worrying about money',
           main: 'Our simple budgeting feature allows you to separate out your spending and set realistic limits each month. That means you …',
         },
         {
-          image: imgPlane,
+          image: 'bg-[url(@/assets/images/image-plane.jpg)]',
           autor: 'Wilson Hutton',
           header: 'Take your Easybank card wherever you go',
           main: 'We want you to enjoy your travels. This is why we don’t charge any fees on purchases while you’re abroad. We’ll even show you …',
         },
         {
-          image: imgConfetti,
+          image: 'bg-[url(@/assets/images/image-confetti.jpg)]',
           autor: 'By Claire Robinson',
           header: 'Our invite-only Beta accounts are now live!',
           main: 'After a lot of hard work by the whole team, we’re excited to launch our closed beta. It’s easy to request an invite through the site ...',
         },
+      ],
+      dataFooter: [
+        'About Us',
+        'Contact',
+        'Blog',
+        'Careers',
+        'Support',
+        'Privacy Policy',
       ]
     };
   },
-  components: { FooterLogo, ButtonMain }
+  components: {
+    FooterLogo,
+    ButtonMain,
+    FooterNetwork
+  }
 }
 </script>
 <template>
   <body class=" flex flex-col items-center text-neo-dark-blue font-public">
-    <header class=" w-full max-w-[425px]">
-      <nav class=" fixed flex justify-between items-center w-full max-w-[425px] px-6 py-5 bg-neo-white">
-        <img :src="logo" alt="logo">
+    <header class=" relative w-full max-w-[425px] pb-[5.5rem]">
+      <div :class="` absolute top-0 left-0 w-full h-[398px] ${bgMB} bg-no-repeat z-0`"></div>
+      <nav class=" fixed flex justify-between items-center w-full max-w-[425px] px-6 py-5 bg-neo-white select-none z-30">
+        <img :src="logo" alt="logo" draggable="false">
         <button>
-          <img v-show="isNavOpen == false" :src="iconHamburger" alt="iconHamburger">
-          <img v-show="isNavOpen == true" :src="iconClose" alt="iconClose">
+          <img v-show="isNavOpen == false" :src="iconHamburger" alt="iconHamburger" draggable="false">
+          <img v-show="isNavOpen == true" :src="iconClose" alt="iconClose" draggable="false">
         </button>
       </nav>
-      <img :src="imgHeader" alt="">
-      <div class=" flex flex-col items-center text-center">
-        <h1 class=" text-[2.5rem] leading-[3rem] tracking-[-.05rem] font-light">
+      <img class=" relative top-[-4rem] px-3 z-20" :src="imgHeader" alt="imgHeader">
+      <div class=" flex flex-col items-center text-center -mt-10">
+        <h1 class=" mb-4 text-[2.5rem] leading-[3rem] tracking-[-.05rem] font-light">
           Next generation digital banking</h1>
-        <p class=" text-neo-grayish-blue text-[1rem] leading-[1.5rem] tracking-[-.015rem]">
+        <p class=" mb-8 text-neo-grayish-blue text-[1rem] leading-[1.5rem] tracking-[-.015rem]">
           Take your financial life online. Your Easybank account will be a one-stop-shop
           for spending, saving, budgeting, investing, and much more.
         </p>
@@ -113,7 +127,7 @@ export default {
         </div>
         <div class=" flex flex-col gap-8">
           <article v-for="(item, index) in dataOne" class=" flex flex-col items-center text-center">
-            <img class=" mb-6 select-none" :src="item.icon" :alt="`Icon ${index + 1}`">
+            <img class=" mb-6 select-none" :src="item.icon" :alt="`Icon ${index + 1}`" draggable="false">
             <h4 class=" mb-4 text-[1.25rem] leading-[1.75rem] tracking-[-.0225rem] font-light">
               {{ item.header }}</h4>
             <p class=" text-neo-grayish-blue text-[.9375rem] leading-[1.625rem] tracking-[-.015rem]">
@@ -127,13 +141,13 @@ export default {
           Latest Articles</h2>
         <div class=" flex flex-col gap-6">
           <article v-for="item in dataTwo">
-            <img class=" rounded-t-[.3125rem] select-none" :src="item.image" alt="" draggable="false">
+            <div :class="`w-full h-[200px] ${item.image} bg-cover bg-center rounded-t-[.3125rem] select-none`"></div>
             <div class=" flex flex-col gap-2 px-8 py-6 bg-neo-white">
               <h6 class=" text-neo-grayish-blue text-[.625rem] leading-[1.125rem] tracking-[-.01rem]">
                 By {{ item.autor }}</h6>
               <h4 class=" text-[1rem] leading-[1.25rem] tracking-[-.02rem] font-light">
                 {{ item.header }}</h4>
-              <p class=" text-neo-grayish-blue text-[.8125rem] leading-[1.125rem] tracking-[-.0125rem]">
+              <p class=" pb-4 text-neo-grayish-blue text-[.8125rem] leading-[1.125rem] tracking-[-.0125rem]">
                 {{ item.main }}
               </p>
             </div>
@@ -142,22 +156,29 @@ export default {
       </section>
     </main>
     <footer
-      class=" w-full max-w-[425px] bg-neo-dark-blue text-neo-white text-[.9375rem] leading-[1.625rem] tracking-[-.015rem]">
-      <FooterLogo />
-      <ul class=" flex flex-col">
-        <li>About Us</li>
-        <li>Contact</li>
-        <li>Blog</li>
-      </ul>
-      <ul class=" flex flex-col">
-        <li>Careers</li>
-        <li>Support</li>
-        <li>Privacy Policy</li>
-      </ul>
-      <ButtonMain w-size="w-[163px]" />
-      <p class=" text-neo-white text-opacity-50">
-        © Easybank. All Rights Reserved
-      </p>
+      class=" flex flex-col gap-8 w-full max-w-[425px] py-10 bg-neo-dark-blue text-neo-white text-center text-[.9375rem] leading-[1.625rem] tracking-[-.015rem]">
+      <div class=" flex flex-col items-center gap-8 select-none">
+        <FooterLogo />
+        <div class=" flex items-center gap-4">
+          <FooterNetwork v-for="number in 5" :data-index="number - 1" />
+        </div>
+      </div>
+      <div class=" flex flex-col items-center gap-2 select-none">
+        <ul class=" flex flex-col gap-2">
+          <li v-for="item in 3" class=" hover:text-neo-lime-green cursor-pointer">
+            {{ dataFooter[item - 1] }}</li>
+        </ul>
+        <ul class=" flex flex-col gap-2">
+          <li v-for="item in 3" class=" hover:text-neo-lime-green cursor-pointer">
+            {{ dataFooter[item + 2] }}</li>
+        </ul>
+      </div>
+      <div class=" flex flex-col items-center gap-6 ">
+        <ButtonMain w-size="w-[163px]" />
+        <p class=" text-neo-white text-opacity-50">
+          © Easybank. All Rights Reserved
+        </p>
+      </div>
     </footer>
   </body>
 </template>
