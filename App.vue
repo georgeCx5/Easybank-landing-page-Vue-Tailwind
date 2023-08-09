@@ -25,11 +25,26 @@ export default {
       bgDT: 'DT:bg-[url(@/assets/images/bg-intro-desktop.svg?url)]',
       imgHeader,
       dataNav: [
-        'Home',
-        'About',
-        'Contact',
-        'Blog',
-        'Careers',
+        {
+          isHovered: false,
+          header: 'Home',
+        },
+        {
+          isHovered: false,
+          header: 'About',
+        },
+        {
+          isHovered: false,
+          header: 'Contact',
+        },
+        {
+          isHovered: false,
+          header: 'Blog',
+        },
+        {
+          isHovered: false,
+          header: 'Careers',
+        },
       ],
       dataOne: [
         {
@@ -98,38 +113,58 @@ export default {
 </script>
 <template>
   <body class=" flex flex-col items-center text-neo-dark-blue font-public">
-    <header class=" relative w-full max-w-[425px] pb-[5.5rem]">
-      <div :class="` absolute top-0 left-0 w-full h-[398px] ${bgMB} bg-no-repeat z-0`"></div>
-      <nav class=" fixed flex justify-between items-center w-full max-w-[425px] px-6 py-5 bg-neo-white select-none z-40">
+    <header
+      class=" relative flex flex-col DT:flex-row-reverse DT:justify-end w-full max-w-[425px] DT:max-w-[1920px] pb-[5.5rem] DT:pb-0 overflow-hidden">
+      <div
+        :class="` absolute top-0 DT:top-[-185px] left-0 DT:left-auto DT:right-[-555px] w-full DT:w-[1371px] h-[398px] DT:h-[956px] ${bgMB} ${bgDT} bg-no-repeat z-0`">
+      </div>
+      <nav
+        class=" fixed flex justify-between items-center w-full max-w-[425px] DT:max-w-[1920px] DT:h-20 px-6 DT:px-[10.25rem] py-5 DT:py-0 bg-neo-white select-none z-40">
         <img :src="logo" alt="logo" draggable="false">
-        <button @click="isNavOpen = !isNavOpen">
+        <!-- Mobile Nav -->
+        <button class=" DT:hidden" @click="isNavOpen = !isNavOpen">
           <img v-show="isNavOpen == false" :src="iconHamburger" alt="iconHamburger" draggable="false">
           <img v-show="isNavOpen == true" :src="iconClose" alt="iconClose" draggable="false">
         </button>
-        <div v-show="isNavOpen" class=" absolute top-[3.75rem] left-0 w-full">
+        <div v-show="isNavOpen" class=" absolute top-[3.75rem] left-0 DT:hidden w-full">
           <!-- Shadow Layer -->
           <div class=" absolute w-full h-[603px] bg-gradient-to-b from-neo-dark-blue to-transparent"></div>
           <!-- Nav Buttons -->
           <div class=" relative flex flex-col items-center gap-6 mx-6 mt-6 py-8 bg-neo-white rounded z-10">
             <button v-for="item in dataNav"
               class=" hover:text-neo-lime-green text-[1.125rem] leading-[1.3125rem] tracking-[-.00875rem]">
-              {{ item }}
+              {{ item.header }}
             </button>
           </div>
         </div>
+        <!-- Desktop Nav -->
+        <div class=" hidden DT:flex self-end gap-[1.875rem]">
+          <div v-for="item in dataNav" class=" flex flex-col justify-between h-12">
+            <button @mouseenter="item.isHovered = true" @mouseleave="item.isHovered = false"
+              class=" text-neo-grayish-blue hover:text-neo-dark-blue text-[.875rem] leading-[1rem] tracking-[-.00875rem]">
+              {{ item.header }}
+            </button>
+            <div v-show="item.isHovered" class=" w-full h-1 bg-neo-lime-green"></div>
+          </div>
+        </div>
+        <ButtonMain class=" hidden DT:block" w-size="w-[163px]" />
       </nav>
-      <img class=" relative top-[-4rem] px-3 z-20 select-none" :src="imgHeader" alt="imgHeader" draggable="false">
-      <div class=" flex flex-col items-center text-center -mt-10">
-        <h1 class=" mb-4 text-[2.5rem] leading-[3rem] tracking-[-.05rem] font-light">
+      <img class=" relative top-[-4rem] DT:top-[-2.75rem] DT:right-[-190px] px-3 DT:px-0 z-20 select-none"
+        :src="imgHeader" alt="imgHeader" draggable="false">
+      <div
+        class=" flex flex-col DT:self-center items-center DT:items-start DT:w-[31%] -mt-10 DT:-mt-36 DT:ml-[10.25rem] text-center DT:text-left z-10">
+        <h1
+          class=" mb-4 DT:mb-6 text-[2.5rem] DT:text-[3.5rem] leading-[3rem] DT:leading-[4REM] tracking-[-.05rem] DT:tracking-[-.0625rem] font-light">
           Next generation digital banking</h1>
-        <p class=" mb-8 text-neo-grayish-blue text-[1rem] leading-[1.5rem] tracking-[-.015rem]">
+        <p
+          class=" mb-8 DT:mb-9 text-neo-grayish-blue text-[1rem] DT:text-[1.125rem] leading-[1.5rem] DT:leading-[1.75rem] tracking-[-.015rem] DT:tracking-[-.0175rem]">
           Take your financial life online. Your Easybank account will be a one-stop-shop
           for spending, saving, budgeting, investing, and much more.
         </p>
         <ButtonMain w-size="w-[166px]" />
       </div>
     </header>
-    <main class=" w-full max-w-[425px]">
+    <main class=" w-full max-w-[425px] DT:max-w-[1920px] DT:-mt-44">
       <section class=" flex flex-col gap-14 px-6 py-16 bg-neo-light-grayish-blue">
         <div class=" flex flex-col gap-[.875rem] text-center">
           <h2 class=" text-[2rem] leading-[2.375rem] tracking-[-.035rem] font-light">
