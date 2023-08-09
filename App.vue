@@ -165,36 +165,43 @@ export default {
       </div>
     </header>
     <main class=" w-full max-w-[425px] DT:max-w-[1920px] DT:-mt-44">
-      <section class=" flex flex-col gap-14 px-6 py-16 bg-neo-light-grayish-blue">
-        <div class=" flex flex-col gap-[.875rem] text-center">
-          <h2 class=" text-[2rem] leading-[2.375rem] tracking-[-.035rem] font-light">
+      <section
+        class=" flex flex-col gap-14 DT:gap-[4.5rem] px-6 DT:px-[10.25rem] py-16 DT:py-24 bg-neo-light-grayish-blue">
+        <div class=" flex flex-col gap-[.875rem] DT:gap-4 DT:w-[57%] text-center DT:text-left">
+          <h2
+            class=" text-[2rem] DT:text-[2.5rem] leading-[2.375rem] DT:leading-[4rem] tracking-[-.035rem] DT:tracking-[-.045rem] font-light">
             Why choose Easybank?</h2>
-          <p class=" text-neo-grayish-blue text-[1rem] leading-[1.5rem] tracking-[-.015rem]">
+          <p
+            class=" text-neo-grayish-blue text-[1rem] DT:text-[1.125rem] leading-[1.5rem] DT:leading-[1.75rem] tracking-[-.015rem]">
             We leverage Open Banking to turn your bank account into your financial hub. Control
             your finances like never before.
           </p>
         </div>
-        <div class=" flex flex-col gap-8">
-          <article v-for="(item, index) in dataOne" class=" flex flex-col items-center text-center">
-            <img class=" mb-6 select-none" :src="item.icon" :alt="`Icon ${index + 1}`" draggable="false">
-            <h4 class=" mb-4 text-[1.25rem] leading-[1.75rem] tracking-[-.0225rem] font-light">
+        <div class=" flex flex-col DT:flex-row gap-8 DT:gap-[1.875rem]">
+          <article v-for="(item, index) in dataOne"
+            class=" flex flex-col items-center DT:items-start text-center DT:text-left">
+            <img class=" mb-6 DT:mb-10 select-none" :src="item.icon" :alt="`Icon ${index + 1}`" draggable="false">
+            <h4
+              class=" mb-4 DT:mb-6 text-[1.25rem] DT:text-[1.5rem] leading-[1.75rem] tracking-[-.0225rem] DT:tracking-[-.0275rem] font-light">
               {{ item.header }}</h4>
-            <p class=" text-neo-grayish-blue text-[.9375rem] leading-[1.625rem] tracking-[-.015rem]">
+            <p class=" text-neo-grayish-blue text-[.9375rem] DT:text-[1rem] leading-[1.625rem] tracking-[-.015rem]">
               {{ item.main }}
             </p>
           </article>
         </div>
       </section>
-      <section class=" flex flex-col gap-8 px-6 py-[5.5rem] bg-neo-very-light-gray">
-        <h2 class=" text-[2rem] leading-[2.375rem] tracking-[-.035rem] font-light text-center">
+      <section class=" flex flex-col gap-8 DT:gap-10 px-6 DT:px-[10.25rem] py-[5.5rem] DT:py-20 bg-neo-very-light-gray">
+        <h2
+          class=" text-[2rem] DT:text-[2.5rem] leading-[2.375rem] DT:leading-[4rem] tracking-[-.035rem] DT:tracking-[-.045rem] font-light text-center DT:text-left">
           Latest Articles</h2>
-        <div class=" flex flex-col gap-6">
+        <div class=" flex flex-col DT:flex-row gap-6 DT:gap-[1.875rem]">
           <article v-for="item in dataTwo">
             <div :class="`w-full h-[200px] ${item.image} bg-cover bg-center rounded-t-[.3125rem] select-none`"></div>
-            <div class=" flex flex-col gap-2 px-8 py-6 bg-neo-white">
+            <div class=" flex flex-col gap-2 px-8 DT:px-6 py-6 bg-neo-white">
               <h6 class=" text-neo-grayish-blue text-[.625rem] leading-[1.125rem] tracking-[-.01rem]">
                 By {{ item.autor }}</h6>
-              <h4 class=" text-[1rem] leading-[1.25rem] tracking-[-.02rem] font-light">
+              <h4
+                class=" hover:text-neo-lime-green text-[1rem] leading-[1.25rem] tracking-[-.02rem] font-light cursor-pointer">
                 {{ item.header }}</h4>
               <p class=" pb-4 text-neo-grayish-blue text-[.8125rem] leading-[1.125rem] tracking-[-.0125rem]">
                 {{ item.main }}
@@ -205,14 +212,14 @@ export default {
       </section>
     </main>
     <footer
-      class=" flex flex-col gap-8 w-full max-w-[425px] py-10 bg-neo-dark-blue text-neo-white text-center text-[.9375rem] leading-[1.625rem] tracking-[-.015rem]">
-      <div class=" flex flex-col items-center gap-8 select-none">
+      class=" flex flex-col DT:flex-row DT:justify-between gap-8 DT:gap-0 w-full max-w-[425px] DT:max-w-[1920px] DT:px-[10.25rem] py-10 DT:py-12 bg-neo-dark-blue text-neo-white text-center DT:text-left text-[.9375rem] leading-[1.625rem] tracking-[-.015rem]">
+      <div class=" flex flex-col items-center DT:items-start DT:justify-between gap-8 select-none">
         <FooterLogo />
         <div class=" flex items-center gap-4">
           <FooterNetwork v-for="number in 5" :data-index="number - 1" />
         </div>
       </div>
-      <div class=" flex flex-col items-center gap-2 select-none">
+      <div class=" flex flex-col DT:flex-row items-center gap-2 DT:gap-[9rem] DT:ml-[-20%] select-none">
         <ul class=" flex flex-col gap-2">
           <li v-for="item in 3" class=" hover:text-neo-lime-green cursor-pointer">
             {{ dataFooter[item - 1] }}</li>
@@ -222,7 +229,7 @@ export default {
             {{ dataFooter[item + 2] }}</li>
         </ul>
       </div>
-      <div class=" flex flex-col items-center gap-6 ">
+      <div class=" flex flex-col items-center DT:items-end gap-6">
         <ButtonMain w-size="w-[163px]" />
         <p class=" text-neo-white text-opacity-50">
           © Easybank. All Rights Reserved
