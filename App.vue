@@ -1,7 +1,7 @@
 <script>
-import ButtonMain from './components/ButtonMain.vue'
-import FooterLogo from './components/FooterLogo.vue'
-import FooterNetwork from './components/FooterNetwork.vue'
+import ButtonMain from '@/components/ButtonMain.vue'
+import FooterLogo from '@/components/FooterLogo.vue'
+import FooterNetwork from '@/components/FooterNetwork.vue'
 
 import logo from '@/assets/images/logo.svg?url'
 import iconClose from '@/assets/images/icon-close.svg?url'
@@ -13,10 +13,6 @@ import iconBudgeting from '@/assets/images/icon-budgeting.svg?url'
 import iconOnboarding from '@/assets/images/icon-onboarding.svg?url'
 import iconApi from '@/assets/images/icon-api.svg?url'
 
-// import imgCurrency from '@/assets/images/image-currency.jpg'
-import imgRestaurant from '@/assets/images/image-restaurant.jpg'
-import imgPlane from '@/assets/images/image-plane.jpg'
-import imgConfetti from '@/assets/images/image-confetti.jpg'
 
 export default {
   data() {
@@ -28,6 +24,13 @@ export default {
       bgMB: 'bg-[url(@/assets/images/bg-intro-mobile.svg?url)]',
       bgDT: 'DT:bg-[url(@/assets/images/bg-intro-desktop.svg?url)]',
       imgHeader,
+      dataNav: [
+        'Home',
+        'About',
+        'Contact',
+        'Blog',
+        'Careers',
+      ],
       dataOne: [
         {
           icon: iconOnline,
@@ -97,14 +100,25 @@ export default {
   <body class=" flex flex-col items-center text-neo-dark-blue font-public">
     <header class=" relative w-full max-w-[425px] pb-[5.5rem]">
       <div :class="` absolute top-0 left-0 w-full h-[398px] ${bgMB} bg-no-repeat z-0`"></div>
-      <nav class=" fixed flex justify-between items-center w-full max-w-[425px] px-6 py-5 bg-neo-white select-none z-30">
+      <nav class=" fixed flex justify-between items-center w-full max-w-[425px] px-6 py-5 bg-neo-white select-none z-40">
         <img :src="logo" alt="logo" draggable="false">
-        <button>
+        <button @click="isNavOpen = !isNavOpen">
           <img v-show="isNavOpen == false" :src="iconHamburger" alt="iconHamburger" draggable="false">
           <img v-show="isNavOpen == true" :src="iconClose" alt="iconClose" draggable="false">
         </button>
+        <div v-show="isNavOpen" class=" absolute top-[3.75rem] left-0 w-full">
+          <!-- Shadow Layer -->
+          <div class=" absolute w-full h-[603px] bg-gradient-to-b from-neo-dark-blue to-transparent"></div>
+          <!-- Nav Buttons -->
+          <div class=" relative flex flex-col items-center gap-6 mx-6 mt-6 py-8 bg-neo-white rounded z-10">
+            <button v-for="item in dataNav"
+              class=" hover:text-neo-lime-green text-[1.125rem] leading-[1.3125rem] tracking-[-.00875rem]">
+              {{ item }}
+            </button>
+          </div>
+        </div>
       </nav>
-      <img class=" relative top-[-4rem] px-3 z-20" :src="imgHeader" alt="imgHeader">
+      <img class=" relative top-[-4rem] px-3 z-20 select-none" :src="imgHeader" alt="imgHeader" draggable="false">
       <div class=" flex flex-col items-center text-center -mt-10">
         <h1 class=" mb-4 text-[2.5rem] leading-[3rem] tracking-[-.05rem] font-light">
           Next generation digital banking</h1>
